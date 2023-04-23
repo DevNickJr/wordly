@@ -16,7 +16,7 @@ const GameBoxes: React.FC<GameBoxesProps> = ({ words, word, triedletters }) => {
 
   return (
     <div className="flex flex-col gap-1">
-      {(words.slice(0,6) ?? words)?.map((wordStr, index) => {
+      {(words.slice(0,6))?.map((wordStr, index) => {
         const wordArr = wordStr?.split("");
         return (
           <div key={wordStr} className={`flex gap-1`}>
@@ -25,9 +25,9 @@ const GameBoxes: React.FC<GameBoxesProps> = ({ words, word, triedletters }) => {
                 key={num}
                 className={`flex h-14 w-14 items-center justify-center border-2 border-black/20 text-3xl font-bold ${
                   wordArr[num] && "border-black/40"
-                } ${
-                    (triedletters?.correctLetters[num]===wordArr[num]) ? "bg-[#538d4e] text-white" : triedletters?.semiCorrectLetters?.includes(wordArr[num]) ? "bg-[#c9b458] text-white" : triedletters?.wrongLetters?.includes(wordArr[num]) ? "bg-[#787c7e] text-white border-none" : ""
-                } capitalize`}
+                } ${(word > index) && (
+                    (triedletters?.correctLetters?.length && triedletters?.correctLetters[num]===wordArr[num]) ? "bg-[#538d4e] text-white" : triedletters?.semiCorrectLetters?.includes(wordArr[num]) ? "bg-[#c9b458] text-white" : triedletters?.wrongLetters?.includes(wordArr[num]) ? "bg-[#787c7e] text-white border-none" : ""
+            )} capitalize`}
               >
                 {wordArr[num] ?? ""}
               </div>
