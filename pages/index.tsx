@@ -5,12 +5,19 @@ import GameKeyboard from "./../components/GameKeyboard";
 import GameBoxes from "./../components/GameBoxes";
 import {answer, keys} from "../constants/index";
 
+interface ITriedLetters {
+  wrongLetters: string[],
+  semiCorrectLetters: string[],
+  correctLetters: string[],
+}
+
+
 export default function Home() {
   const [words, setWords] = useState<string[]>([]);
   const [word, setWord] = useState<number>(0);
 
-    const [triedletters, updateTriedLetters] = useReducer((prevState, newValue: string) => {
-
+    const [triedletters, updateTriedLetters] = useReducer((prevState: ITriedLetters, newValue: string) => {
+        
         return {
             wrongLetters: prevState.wrongLetters.concat(newValue.split("").filter(letter => !answer.includes(letter))),
             semiCorrectLetters: prevState.semiCorrectLetters.concat(newValue.split("").filter(letter => answer.includes(letter))),
@@ -30,7 +37,7 @@ export default function Home() {
   };
 
   const handleInput = (key: string) => {
-    console.log({ key });
+    // console.log({ key });
     const newWords = [...words];
     if (newWords[word]?.length >= 5) return;
     newWords[word] = (newWords[word] ?? "") + key;
@@ -40,12 +47,15 @@ export default function Home() {
   const handleSubmit = () => {
     if (words[word]?.length >= 5 && word < 6) {
         updateTriedLetters(words[word])
-      setWord(prev => ++prev)
+        setWord(prev => ++prev)
+        if (words[word].toUpperCase() === answer.toUpperCase()) {
+          return console.log("game ended", words[word].toUpperCase(), answer.toUpperCase())
+        }
     }
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
-      console.log("Key pressed:", event.keyCode);
+      // console.log("Key pressed:", event.keyCode);
       if (event.keyCode === 8) {
         handleDelete()
       } else if (event.keyCode === 13) {

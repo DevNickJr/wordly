@@ -12,7 +12,7 @@ interface GameBoxesProps {
 }
 
 const GameBoxes: React.FC<GameBoxesProps> = ({ words, word, triedletters }) => {
-  console.log(triedletters);
+  // console.log(triedletters);
 
   return (
     <div className="flex flex-col gap-1">
@@ -27,7 +27,7 @@ const GameBoxes: React.FC<GameBoxesProps> = ({ words, word, triedletters }) => {
                   wordArr[num] && "border-black/40"
                 } ${(word > index) && (
                     (triedletters?.correctLetters?.length && triedletters?.correctLetters[num]===wordArr[num]) ? "bg-[#538d4e] text-white" : triedletters?.semiCorrectLetters?.includes(wordArr[num]) ? "bg-[#c9b458] text-white" : triedletters?.wrongLetters?.includes(wordArr[num]) ? "bg-[#787c7e] text-white border-none" : ""
-            )} capitalize`}
+                  )} capitalize`}
               >
                 {wordArr[num] ?? ""}
               </div>
@@ -35,7 +35,7 @@ const GameBoxes: React.FC<GameBoxesProps> = ({ words, word, triedletters }) => {
           </div>
         );
       })}
-      {[...Array(6 - (words?.length > 6 ? 6 : words?.length))]?.map((val) => (
+      {Array.from(Array(6 - Number(words?.length > 6 ? 6 : words?.length)).keys())?.map((val) => (
         <div key={val} className={`flex gap-1`}>
           {[0, 1, 2, 3, 4].map((num) => (
             <div
