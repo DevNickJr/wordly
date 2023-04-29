@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.keyboard_row {
+  @apply flex flex-1 gap-1;
+}
+
+.keyboard_button {
+    @apply flex-1 md:aspect-[4/5] aspect-[4/6] active:brightness-[0.6] rounded h-full text-white font-semibold md:text-lg;
+}

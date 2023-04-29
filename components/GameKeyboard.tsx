@@ -30,25 +30,25 @@ const GameKeyboard = ({
   };
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="mx-auto flex w-full max-w-[500px] flex-col gap-1">
       <div className="keyboard_row">
         {React.Children.toArray(
           keys.slice(0, 10).map((key) => (
             <button
               onClick={() => handleInput(key.toUpperCase())}
-              className={clsx("btn px-2 sm:px-4 text-lg text-white", keyColor(key))}
+              className={clsx("keyboard_button", keyColor(key))}
             >
               {key}
             </button>
           )),
         )}
       </div>
-      <div className="keyboard_row">
+      <div className="keyboard_row px-4">
         {React.Children.toArray(
           keys.slice(10, 19).map((key) => (
             <button
               onClick={() => handleInput(key)}
-              className={clsx("btn px-2 sm:px-4 text-lg text-white", keyColor(key))}
+              className={clsx("keyboard_button", keyColor(key))}
             >
               {key}
             </button>
@@ -56,20 +56,23 @@ const GameKeyboard = ({
         )}
       </div>
       <div className="keyboard_row">
-        <button onClick={handleSubmit} className="btn text-sm px-2 sm:px-4 ">
+        <button onClick={handleSubmit} className="btn h-full px-2 text-sm sm:px-4 ">
           ENTER
         </button>
         {React.Children.toArray(
           keys.slice(19, 26).map((key) => (
             <button
               onClick={() => handleInput(key)}
-              className={clsx("btn px-2 sm:px-4 text-lg text-white", keyColor(key))}
+              className={clsx("keyboard_button", keyColor(key))}
             >
               {key}
             </button>
           )),
         )}
-        <button onClick={handleDelete} className={clsx("btn text-base px-2 sm:px-4")}>
+        <button
+          onClick={handleDelete}
+          className={clsx("btn  h-full px-2 text-base sm:px-4")}
+        >
           DEL
         </button>
       </div>
