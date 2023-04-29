@@ -25,7 +25,7 @@ const GameKeyboard = ({
     } else if (almostCorrectLetters.toUpperCase().includes(key)) {
       return "bg-[#b59f3b]";
     } else {
-      return "bg-[#818384]";
+      return "bg-[#4f5051]";
     }
   };
 
@@ -56,7 +56,10 @@ const GameKeyboard = ({
         )}
       </div>
       <div className="keyboard_row">
-        <button onClick={handleSubmit} className="btn h-full px-2 text-sm sm:px-4 ">
+        <button
+          onClick={handleSubmit}
+          className="btn h-full px-2 text-sm sm:px-4 "
+        >
           ENTER
         </button>
         {React.Children.toArray(
