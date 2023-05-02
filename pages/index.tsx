@@ -148,6 +148,7 @@ export default function Home() {
       }
       <h1 className="sm:mb-4 text-3xl font-extrabold">Wordle</h1>
       <GameBoxes words={words} word={word} triedletters={triedletters} />
+      <div className="py-1"/>
       <GameKeyboard
           wrongLetters={triedletters.wrongLetters.join("")}
           almostCorrectLetters={triedletters.semiCorrectLetters.join('')}

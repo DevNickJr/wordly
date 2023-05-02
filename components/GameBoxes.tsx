@@ -2,31 +2,39 @@ import React from "react";
 
 interface GameBoxesProps {
   words: string[];
-  word: number,
+  word: number;
   triedletters: {
     wrongLetters: string[];
     semiCorrectLetters: string[];
     correctLetters: string[];
-}
+  };
 }
 
 const GameBoxes: React.FC<GameBoxesProps> = ({ words, word, triedletters }) => {
   // console.log(triedletters);
 
   return (
-    <div className="flex flex-col gap-1">
-      {(words.slice(0,6))?.map((wordStr, index) => {
+    <div className="mx-auto flex w-full max-w-[450px] flex-col gap-1 sm:max-w-[330px]">
+      {words.slice(0, 6)?.map((wordStr, index) => {
         const wordArr = wordStr?.split("");
         return (
-          <div key={`${wordStr + index}`} className={`flex gap-1`}>
+          <div key={`${wordStr + index}`} className={`flex flex-1 gap-1`}>
             {[0, 1, 2, 3, 4].map((num) => (
               <div
                 key={num}
-                className={`flex h-14 w-14 items-center justify-center border-2 border-black/20 text-3xl font-bold ${
+                className={`flex aspect-[1/1] flex-1 items-center justify-center border-2 border-black/20 font-bold md:text-3xl ${
                   wordArr[num] && "border-black/40"
-                } ${(word > index) && (
-                    (triedletters?.correctLetters?.length && triedletters?.correctLetters[num]===wordArr[num]) ? "bg-[#538d4e] text-white" : triedletters?.semiCorrectLetters?.includes(wordArr[num]) ? "bg-[#c9b458] text-white" : triedletters?.wrongLetters?.includes(wordArr[num]) ? "bg-[#787c7e] text-white border-none" : ""
-                  )} capitalize`}
+                } ${
+                  word > index &&
+                  (triedletters?.correctLetters?.length &&
+                  triedletters?.correctLetters[num] === wordArr[num]
+                    ? "bg-[#538d4e] text-white"
+                    : triedletters?.semiCorrectLetters?.includes(wordArr[num])
+                    ? "bg-[#c9b458] text-white"
+                    : triedletters?.wrongLetters?.includes(wordArr[num])
+                    ? "border-none bg-[#787c7e] text-white"
+                    : "")
+                } capitalize`}
               >
                 {wordArr[num] ?? ""}
               </div>
@@ -34,12 +42,14 @@ const GameBoxes: React.FC<GameBoxesProps> = ({ words, word, triedletters }) => {
           </div>
         );
       })}
-      {Array.from(Array(6 - Number(words?.length > 6 ? 6 : words?.length)).keys())?.map((val) => (
-        <div key={val} className={`flex gap-1`}>
+      {Array.from(
+        Array(6 - Number(words?.length > 6 ? 6 : words?.length)).keys(),
+      )?.map((val) => (
+        <div key={val} className={`flex flex-1 gap-1`}>
           {[0, 1, 2, 3, 4].map((num) => (
             <div
               key={`${val} ${num}`}
-              className={`flex h-14 w-14 items-center justify-center border-2 border-black/20 text-3xl font-bold ${
+              className={`flex aspect-[1/1] flex-1 items-center justify-center border-2 border-black/20 text-3xl font-bold ${
                 false && "border-black/40"
               } ${false && "bg-[#787c7e] text-white"} ${
                 false && "bg-[#c9b458] text-white"
