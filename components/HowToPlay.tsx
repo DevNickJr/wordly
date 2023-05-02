@@ -58,8 +58,12 @@ const HowToPlay = ({ isOpen, setIsOpen }: IProps) => {
                         <p><span className='font-bold'>U</span> is not in the word in any spot.</p>
                     </div>
                 </div>
-                <p className='border-t-2 border-b-2 border-black/20 py-4 my-3 leading-tight'>Log in or create a free NYT account to link your stats</p>
-                <p className='leading-tight'>A new puzzle is released daily at midnight. If you haven&#39;t already, you can sign up for our daily reminder email.</p>
+                <p className='border-t-2 border-b-2 border-black/20 py-4 my-3 leading-tight'>
+                    <span className='font-bold'>Tip:</span> A good strategy is to start with a word that uses lots of vowels (AEIOU).
+                </p>
+                <p className='leading-tight'>
+                    <span className='font-bold'>Note:</span> This is an unofficial fan-made game. The New York Times is not affiliated with this website in any way.
+                </p>
             </div>
         </div>
   )
